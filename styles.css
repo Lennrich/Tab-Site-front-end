@@ -1,0 +1,55 @@
+/* Monsey Clothing Sales — minimal stylesheet.
+   Clean, corporate polish (Nov 2026): same navy/blue palette, same
+   wording, links and behaviour — only spacing, typography, cards,
+   buttons and header/footer treatment were tidied up. No new
+   sections, images or features. Mobile-first: this is opened
+   from a text message on a phone. */
+:root{
+  --blue:#1f4e8c; --blue2:#2a62a8; --navy:#16365c; --navy-dark:#102a49;
+  --pink:#c93d85; --ink:#1b2a3a; --muted:#5b6b7d; --line:#d5dce4;
+  --line-soft:#e3e8ef; --bg:#f3f5f8; --card:#fff;
+  --shadow:0 1px 2px rgba(16,42,73,.06),0 4px 14px rgba(16,42,73,.06);
+  --radius:14px;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--ink);background:var(--bg);line-height:1.5;font-size:16px}
+/* Thin navy rule at the very top — the one corporate accent. */
+body::before{content:"";display:block;height:4px;background:linear-gradient(90deg,var(--navy),var(--blue) 60%,var(--blue2))}
+.wrap{max-width:680px;margin:0 auto;padding:20px 16px 24px}
+.hero{text-align:center;padding:20px 8px 18px}
+.badge{display:inline-flex;align-items:center;justify-content:center;width:52px;height:52px;border-radius:50%;background:#e8eef5;font-size:1.6rem;box-shadow:inset 0 0 0 1px var(--line-soft)}
+.hero h1{margin:12px 0 4px;font-size:1.7rem;line-height:1.2;letter-spacing:-.01em;color:var(--navy)}
+.lede{margin:0;color:var(--muted);font-size:1rem}
+.card{background:var(--card);border:1px solid var(--line-soft);border-radius:16px;padding:22px 18px;box-shadow:var(--shadow)}
+.foot{text-align:center;color:var(--muted);font-size:.88rem;line-height:1.6;padding:20px 16px 8px;border-top:1px solid var(--line-soft);margin-top:24px}
+.foot p{margin:2px 0}
+.foot a{color:var(--blue2);text-decoration:none}
+.foot a:hover{text-decoration:underline}
+a{color:var(--blue2)}
+.back{display:inline-block;margin:0 0 12px;font-weight:600;text-decoration:none}
+.back:hover{text-decoration:underline}
+.doc h1{margin:0 0 6px;font-size:1.45rem;line-height:1.25;letter-spacing:-.01em;color:var(--navy)}
+.doc h2{margin:22px 0 6px;font-size:1.08rem;color:var(--navy);padding-bottom:6px;border-bottom:1px solid var(--line-soft)}
+.doc h3{margin:14px 0 4px;font-size:1rem;color:var(--navy)}
+.doc p,.doc li{color:#2b3440}
+.doc ul{padding-left:20px}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+label{display:block;font-weight:600;margin:0 0 12px;font-size:.95rem}
+input{width:100%;font:inherit;padding:12px;border:1.5px solid var(--line);border-radius:10px;margin-top:5px;background:#fff;color:var(--ink)}
+input:focus{outline:none;border-color:var(--blue2);box-shadow:0 0 0 3px rgba(42,98,168,.18)}
+button{font:inherit;font-weight:700;width:100%;padding:13px 16px;border:0;border-radius:12px;background:var(--blue);color:#fff;cursor:pointer;box-shadow:0 1px 2px rgba(16,42,73,.15)}
+button:hover{background:var(--navy)}
+button:disabled{opacity:.6;cursor:wait}
+.req{color:#b42318}
+.err{background:#fdecea;color:#b42318;border-radius:10px;padding:10px 12px;margin:0 0 12px;font-weight:600}
+.fine{color:var(--muted);font-size:.88rem;text-align:center;line-height:1.5}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+.thanks{text-align:center}
+.check{display:inline-flex;align-items:center;justify-content:center;width:56px;height:56px;border-radius:50%;background:#e6f4ec;color:#1a7f4b;font-size:2rem}
+@media (max-width:420px){
+  .row2{grid-template-columns:1fr}
+  .wrap{padding:16px 14px 20px}
+  .hero h1{font-size:1.55rem}
+  .card{padding:20px 16px}
+}

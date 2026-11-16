@@ -1,0 +1,83 @@
+{
+    "SALES": [
+        {
+            "closed_reason": "",
+            "days": [
+                {
+                    "label": "Sample Day 1",
+                    "short": "Sample Day 1",
+                    "slots": [
+                        {
+                            "capacity": 10,
+                            "label": "9:00 AM",
+                            "slot": "sample-day1-0900"
+                        },
+                        {
+                            "capacity": 10,
+                            "label": "10:00 AM",
+                            "slot": "sample-day1-1000"
+                        },
+                        {
+                            "capacity": 3,
+                            "label": "11:00 AM",
+                            "slot": "sample-day1-1100"
+                        },
+                        {
+                            "capacity": 1,
+                            "label": "12:00 PM",
+                            "slot": "sample-day1-1200"
+                        }
+                    ]
+                },
+                {
+                    "label": "Sample Day 2",
+                    "short": "Sample Day 2",
+                    "slots": [
+                        {
+                            "capacity": 10,
+                            "label": "9:00 AM",
+                            "slot": "sample-day2-0900"
+                        },
+                        {
+                            "capacity": 10,
+                            "label": "10:00 AM",
+                            "slot": "sample-day2-1000"
+                        }
+                    ]
+                }
+            ],
+            "group": "boys",
+            "open": true,
+            "slug": "boys-sale-sample",
+            "title": "Boys' Sale \u2014 Sample",
+            "when": "Sample dates \u2014 change in config.json"
+        },
+        {
+            "closed_reason": "",
+            "days": [
+                {
+                    "label": "Sample Day 1",
+                    "short": "Sample Day 1",
+                    "slots": [
+                        {
+                            "capacity": 10,
+                            "label": "9:00 AM",
+                            "slot": "girls-sample-day1-0900"
+                        },
+                        {
+                            "capacity": 10,
+                            "label": "10:00 AM",
+                            "slot": "girls-sample-day1-1000"
+                        }
+                    ]
+                }
+            ],
+            "group": "girls",
+            "open": true,
+            "slug": "girls-sale-sample",
+            "title": "Girls' Sale \u2014 Sample",
+            "when": "Sample dates \u2014 change in config.json"
+        }
+    ],
+    "SHOW_GIRLS": false
+}
