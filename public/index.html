@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Monsey Clothing Sales — Registration &amp; Slot Booking</title>
+<meta name="description" content="Register for Monsey Clothing Sales announcements and reserve a shopping time. Text alerts are optional.">
+<meta property="og:title" content="Monsey Clothing Sales — Register">
+<meta property="og:description" content="Sign up to hear about upcoming sales. Takes about a minute.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.monseyclothingsales.com/">
+<meta name="theme-color" content="#1f4e8c">
+<link rel="stylesheet" href="/styles.css">
+<style>
+.split{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:0 0 6px}
+.split.boys-only{grid-template-columns:1fr;max-width:420px;margin:0 auto 6px}
+.side{min-width:0;display:flex;flex-direction:column}
+.sideh{margin:0 0 8px;text-align:center;font-size:.8rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase}
+.sb .sideh{color:#1f4e8c}.sg .sideh{color:#d03f8c}
+.bigbtn{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;min-height:92px;padding:12px 6px;margin:0 0 10px;border-radius:14px;text-align:center;color:#fff;font-weight:700;font-size:1.05rem;line-height:1.2;text-decoration:none;-webkit-tap-highlight-color:transparent;transition:background .15s,transform .15s,box-shadow .15s;box-shadow:0 1px 2px rgba(16,42,73,.18),0 3px 10px rgba(16,42,73,.12)}
+.bigbtn:hover{transform:translateY(-1px);box-shadow:0 2px 4px rgba(16,42,73,.18),0 6px 16px rgba(16,42,73,.14)}
+.sb .bigbtn:hover{background:#16365c}.sg .bigbtn:hover{background:#a82e6e}
+.consent{margin:18px 0 0;padding:0;border:0;background:transparent;font-size:.85rem;line-height:1.5;color:var(--muted)}
+.consent summary{cursor:pointer;font-weight:600;font-size:.88rem;color:var(--muted);list-style-position:inside}
+.consent summary:hover{color:var(--blue)}
+.consent .consent-body{margin-top:8px;padding:12px 14px;border:1px solid var(--line-soft);border-radius:10px;background:#f8fafc;color:#2b3440}
+.consent .consent-body p{margin:0 0 8px}.consent .consent-body ul{margin:0 0 8px;padding-left:20px}.consent .consent-body li{margin:0 0 4px}
+.sms-note{margin:18px 0 0;text-align:center;font-size:.85rem;color:var(--muted)}
+@media (min-width:420px){.bigbtn{font-size:1.15rem}}
+@media (max-width:340px){.bigbtn{font-size:.95rem;min-height:84px}.split{gap:8px}}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <header class="hero">
+    <div class="badge" aria-hidden="true">🛍️</div>
+    <h1>Monsey Clothing Sales</h1>
+    <p class="lede" style="font-weight:700;margin-bottom:4px">Sale Registration &amp; Slot Booking</p>
+  </header>
+
+  <section class="card" id="signup">
+    <ol style="font-size:1.15rem;margin:0 auto 16px;padding-left:1.4em;max-width:30em;line-height:1.6"><li><b>Register</b> to be invited and to be informed about upcoming sales.</li><li><b>Reserve a slot</b> when sales are announced.</li></ol>
+    <!-- Girls side is hidden by default. It is only shown if /api/config
+         says SHOW_GIRLS is on. Girls are NOT greyed out — they are absent. -->
+    <div class="split boys-only" id="split">
+      <div class="side sb">
+        <h2 class="sideh">Boys</h2>
+        <a class="bigbtn" href="https://www.cognitoforms.com/SGofRockand/BoysClothingsale2627"><span aria-hidden="true">👕</span>Register for Boys' Sales</a>
+        <a class="bigbtn slotbtn" id="slot-boys" href="/slots.html?group=boys"><span aria-hidden="true">🕒</span>Reserve a Slot at a Boys' Sale</a>
+      </div>
+      <div class="side sg" id="girls-side" hidden>
+        <h2 class="sideh">Girls</h2>
+        <a class="bigbtn" href="https://www.cognitoforms.com/SGofRockand/GirlsRegistryWinter20262027"><span aria-hidden="true">🎀</span>Register for Girls' Sales</a>
+        <a class="bigbtn slotbtn" id="slot-girls" href="/slots.html?group=girls"><span aria-hidden="true">🕒</span>Reserve a Slot at a Girls' Sale</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SMS consent: kept on the front page, at the very bottom, collapsed
+       by default so it does not distract from Register / Reserve a Slot.
+       Full wording unchanged — tap to expand. -->
+  <p class="sms-note">Text alerts are optional.</p>
+  <details class="consent" id="sms-consent">
+    <summary>Text message alerts (SMS) — details</summary>
+    <div class="consent-body">
+      <p><b>How to sign up for texts:</b> on the registration form (<span id="which-form">Boys button above</span>), enter your mobile phone number and check the box agreeing to receive text messages from Monsey Clothing Sales.</p>
+      <p>By providing your mobile number and agreeing on the registration form, you consent to receive recurring text messages from <b>Monsey Clothing Sales</b> about sale announcements, registration updates, and time-slot reminders.</p>
+      <ul>
+        <li>Message frequency varies (usually a few messages per sale).</li>
+        <li>Msg &amp; data rates may apply.</li>
+        <li>Reply <b>STOP</b> to opt out at any time. Reply <b>HELP</b> for help.</li>
+        <li>Consent is not a condition of purchase.</li>
+        <li>Your mobile number and text opt-in data are never sold or shared with third parties for marketing.</li>
+      </ul>
+      <p>See our <a href="/privacy.html">Privacy Policy</a> and <a href="/terms.html">Terms &amp; Conditions</a>. Questions: <a href="mailto:info@monseyclothingsales.com">info@monseyclothingsales.com</a></p>
+    </div>
+  </details>
+</main>
+<footer class="foot">
+  <p>Monsey Clothing Sales · Monsey, NY</p>
+  <p><a href="/privacy.html">Privacy Policy</a> · <a href="/terms.html">Terms &amp; Conditions</a></p>
+</footer>
+<script>
+fetch("/api/config", { cache: "no-store" }).then(function (r) { return r.json(); }).then(function (c) {
+  if (c && c.show_girls) {
+    document.getElementById("girls-side").hidden = false;
+    document.getElementById("split").classList.remove("boys-only");
+    document.getElementById("which-form").textContent = "Boys or Girls button above";
+  }
+}).catch(function () { /* girls stay hidden — the safe default */ });
+</script>
+</body>
+</html>

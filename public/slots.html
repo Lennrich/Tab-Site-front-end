@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Pick your time — Monsey Clothing Sales</title>
+<meta name="robots" content="noindex,nofollow">
+<meta name="description" content="Pick a time slot for the sale.">
+<meta property="og:title" content="Pick your time — Monsey Clothing Sales">
+<meta property="og:description" content="Choose a time slot for the sale. Takes 30 seconds.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="/og.png">
+<meta name="theme-color" content="#1f4e8c">
+<link rel="stylesheet" href="/styles.css">
+<style>
+.when{margin:6px 0 0;font-weight:700;color:var(--blue);font-size:1.15rem}
+.nf{text-align:center;font-weight:800;color:#b42318;margin:0 0 14px;letter-spacing:.02em}
+.tabs{display:flex;gap:8px;overflow-x:auto;margin:0 -16px 14px;padding:2px 16px 6px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tab{flex:1 0 44%;width:auto;min-height:56px;padding:8px 14px;border:1.5px solid var(--line);border-radius:14px;background:#fff;color:var(--ink);font-size:.92rem;font-weight:700;line-height:1.2;text-align:center;white-space:normal;box-shadow:none}
+.tab small{display:block;font-weight:600;font-size:.8rem;color:var(--muted);margin-top:2px}
+.tab:hover{background:#f7f9fc;border-color:var(--blue2)}
+.tab.on{background:var(--blue);border-color:var(--blue);color:#fff;box-shadow:0 1px 2px rgba(16,42,73,.18)}.tab.on small{color:#dfe6ee}
+.dayh{margin:20px 0 10px;font-size:.85rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--navy)}
+.dayh:first-child{margin-top:0}
+.slots{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media (max-width:360px){.slots{grid-template-columns:1fr}}
+.slot{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:68px;padding:10px 8px;border:1.5px solid var(--line);border-radius:14px;background:#fff;color:var(--ink);font-size:1.05rem;font-weight:700;line-height:1.2;transition:border-color .15s,box-shadow .15s}
+.slot:hover{background:#f7f9fc;border-color:var(--blue2)}
+.slot small{display:block;margin-top:4px;font-size:.85rem;font-weight:600;color:#1a7f4b}
+.slot.low small{color:#b26a00}
+.slot.full{background:#f2f4f7;color:#98a2b3;cursor:not-allowed}
+.slot.full small{color:#98a2b3}
+.slot.sel{background:var(--blue);border-color:var(--blue);color:#fff;box-shadow:0 2px 8px rgba(31,78,140,.3)}
+.slot.sel small{color:#dfe6ee}
+.picked{background:#eef2f6;border:1px solid var(--line-soft);border-radius:12px;padding:12px;margin:0 0 14px;font-weight:700;text-align:center;font-size:1.1rem;color:var(--navy)}
+.change{display:block;width:auto;min-height:0;margin:8px auto 0;background:none;color:var(--blue2);font-size:.95rem;font-weight:600;text-decoration:underline;padding:4px}
+.change:hover{background:none}
+.notice{text-align:center;padding:20px 8px;color:var(--muted);font-size:1.05rem}
+.ok h2{margin:10px 0 6px;font-size:1.35rem;line-height:1.3}
+.moved{color:var(--muted);margin:6px 0 0}
+/* accent follows the side: boys blue, girls pink */
+body.g-boys{--blue:#1f4e8c;--blue2:#2a62a8}
+body.g-girls{--blue:#c93d85;--blue2:#d0408a}
+body.g-girls input:focus{box-shadow:0 0 0 3px rgba(201,61,133,.22)}
+.tab.on.t-boys{background:#1f4e8c;border-color:#1f4e8c}.tab.on.t-girls{background:#c93d85;border-color:#c93d85}
+.home{display:inline-block;margin:0 0 6px;font-weight:600;color:var(--blue2);text-decoration:none}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <a class="home" href="/">← Home</a>
+  <nav class="tabs" id="tabs" role="tablist" hidden></nav>
+  <header class="hero">
+    <div class="badge" aria-hidden="true">🕒</div>
+    <h1 id="title">Pick your time</h1>
+    <p class="when" id="when"></p>
+    <p class="lede">Please choose a time to come, so everyone can be helped in a proper and calm manner.</p>
+  </header>
+
+  <section class="card" id="card">
+    <p class="nf">PLEASE DO NOT FORWARD THIS LINK.</p>
+    <div id="step1">
+      <p class="notice" id="loading">Loading times…</p>
+      <div id="slots"></div>
+    </div>
+
+    <form id="step2" hidden novalidate>
+      <div class="picked" id="picked"></div>
+      <p class="err" id="err" role="alert" hidden></p>
+      <div class="row2">
+        <label>First name <span class="req" aria-hidden="true">*</span><input name="first_name" autocomplete="given-name" maxlength="60" required></label>
+        <label>Last name <span class="req" aria-hidden="true">*</span><input name="last_name" autocomplete="family-name" maxlength="60" required></label>
+      </div>
+      <label>Phone number <span class="req" aria-hidden="true">*</span><input name="phone" type="tel" inputmode="tel" autocomplete="tel" maxlength="20" placeholder="(845) 555-1234" required></label>
+      <input class="hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <button id="submit">Confirm my time</button>
+      <button type="button" class="change" id="back">← Pick a different time</button>
+      <p class="fine">By booking you agree to get a reminder text about your slot. Reply STOP to opt out. See our <a href="/privacy.html">Privacy Policy</a> and <a href="/terms.html">Terms</a>.</p>
+    </form>
+
+    <div id="done" class="thanks ok" hidden>
+      <div class="check" aria-hidden="true">✓</div>
+      <h2 id="doneMsg"></h2>
+      <p id="doneSub">See you there!</p>
+      <p class="moved" id="moved" hidden></p>
+      <p class="fine">Need a different time? Book again with the same phone number and it moves your spot.</p>
+      <button type="button" class="change" id="again">← Back to the times</button>
+    </div>
+  </section>
+</main>
+<footer class="foot">
+  <p>Monsey Clothing Sales · Monsey, NY</p>
+  <p><a href="/privacy.html">Privacy Policy</a> · <a href="/terms.html">SMS Terms</a></p>
+</footer>
+<script>
+(function(){
+  var $=function(id){return document.getElementById(id);};
+  var data=null, cur=null, chosen=null;
+  var qs=new URLSearchParams(location.search);
+  var want=qs.get('sale');
+  var group=(qs.get('group')||'').toLowerCase(); if(group!=='boys'&&group!=='girls')group='';
+  var GL={boys:'boys\u2019',girls:'girls\u2019'};
+  function accent(g){var b=document.body;b.classList.remove('g-boys','g-girls');if(g==='boys'||g==='girls')b.classList.add('g-'+g);
+    var m=document.querySelector('meta[name=theme-color]');if(m)m.setAttribute('content',g==='girls'?'#c93d85':g==='boys'?'#1f4e8c':'#3d4b5c');}
+  accent(group);
+  function esc(s){return String(s).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];});}
+  function show(step){$('step1').hidden=step!==1;$('step2').hidden=step!==2;$('done').hidden=step!==3;}
+  function sale(){return (data&&data.sales||[]).filter(function(s){return s.slug===cur;})[0];}
+  function msg(t){var n=$('loading');n.hidden=!t;n.textContent=t||'';}
+  function renderTabs(){
+    var ss=data.sales||[];
+    $('tabs').hidden=ss.length<2;
+    $('tabs').innerHTML=ss.map(function(s){return '<button type="button" role="tab" class="tab t-'+esc(s.group||'boys')+(s.slug===cur?' on':'')+'" aria-selected="'+(s.slug===cur)+'" data-sale="'+esc(s.slug)+'">'+esc(s.title)+'<small>'+esc(s.when)+'</small></button>';}).join('');
+  }
+  function render(){
+    var s=sale();
+    renderTabs();
+    accent(s?s.group:group);
+    if(!s){$('title').textContent='Pick your time';$('when').textContent='';$('slots').innerHTML='';msg(want?'This sale isn\u2019t open for booking right now.':'No '+(group?GL[group]+' ':'')+'sales are open for booking right now. Check back soon.');return;}
+    $('title').textContent=s.title;
+    document.title=s.title+' — Pick your time';
+    $('when').textContent=(s.days.length?s.days.map(function(x){return x.label;}):[s.when]).join(' & ');
+    if(!s.open){$('slots').innerHTML='';msg(s.closed_reason==='past'?'This sale has passed. Watch for a text about the next one.':s.closed_reason==='none'?'No times are set up yet. Check back soon.':'Booking for this sale is closed right now. Check back soon.');return;}
+    var left=0,n=0;
+    $('slots').innerHTML=s.days.map(function(day){
+      return '<h2 class="dayh">'+esc(day.label)+'</h2><div class="slots" role="list">'+day.slots.map(function(x){
+        left+=x.left;n++;
+        var cls='slot'+(x.full?' full':x.left<=3?' low':'')+(chosen===x.slot?' sel':'');
+        var lbl=x.full?'Full':(x.left===1?'1 spot left':x.left+' spots left');
+        return '<button type="button" role="listitem" class="'+cls+'" data-slot="'+esc(x.slot)+'"'+(x.full?' disabled aria-disabled="true"':'')+'>'+esc(x.label)+'<small>'+lbl+'</small></button>';
+      }).join('')+'</div>';
+    }).join('');
+    msg(!n?'No times are set up yet. Check back soon.':!left?'All slots are full for this sale. Sorry!':'');
+  }
+  function load(){
+    var q=[];if(group)q.push('group='+group);if(want)q.push('sale='+encodeURIComponent(want));
+    return fetch('/api/slots'+(q.length?'?'+q.join('&'):''),{cache:'no-store'}).then(function(r){return r.json();}).then(function(d){
+      data=d;
+      var ss=d.sales||[];
+      if(!cur||!sale()){cur=(ss.filter(function(s){return s.slug===want;})[0]||ss[0]||{}).slug||null;}
+      render();
+    }).catch(function(){msg('Couldn\u2019t load the times. Please refresh.');});
+  }
+  $('tabs').addEventListener('click',function(e){
+    var b=e.target.closest('.tab');if(!b)return;
+    cur=b.getAttribute('data-sale');chosen=null;
+    want=cur;
+    try{history.replaceState(null,'','?'+(group?'group='+group+'&':'')+'sale='+encodeURIComponent(cur));}catch(_){}
+    show(1);render();
+  });
+  $('slots').addEventListener('click',function(e){
+    var b=e.target.closest('.slot');if(!b||b.disabled)return;
+    chosen=b.getAttribute('data-slot');
+    var s=sale(),x=null,dd=null;s.days.forEach(function(day){day.slots.forEach(function(y){if(y.slot===chosen){x=y;dd=day;}});});
+    if(!x)return;
+    $('picked').innerHTML=esc(s.title)+'<br>'+esc(x.label)+' · '+esc(dd.short);
+    $('err').hidden=true;show(2);window.scrollTo(0,0);
+    var f=$('step2').elements.first_name;if(!f.value)setTimeout(function(){f.focus();},50);
+  });
+  $('again').addEventListener('click',function(){show(1);window.scrollTo(0,0);});
+  $('back').addEventListener('click',function(){show(1);load();});
+  $('step2').addEventListener('submit',function(e){
+    e.preventDefault();
+    var f=this.elements, err=$('err');
+    var first=f.first_name.value.trim(), last=f.last_name.value.trim(), phone=f.phone.value.trim();
+    if(!first||!last){err.textContent='Please add your first and last name.';err.hidden=false;return;}
+    if(phone.replace(/\D/g,'').length<10){err.textContent='Please add a valid phone number.';err.hidden=false;return;}
+    var btn=$('submit');btn.disabled=true;btn.textContent='Booking…';
+    fetch('/api/book',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({sale:cur,slot:chosen,first_name:first,last_name:last,phone:phone,website:f.website.value})})
+      .then(function(r){return r.json();}).then(function(d){
+        btn.disabled=false;btn.textContent='Confirm my time';
+        if(d.ok){
+          $('doneMsg').textContent=d.message||'You\u2019re booked!';
+          $('doneSub').textContent=(d.sale?d.sale+'. ':'')+'See you there!';
+          if(d.moved){$('moved').textContent='We moved you from '+d.from+'. That spot is free for someone else now.';$('moved').hidden=false;}else $('moved').hidden=true;
+          show(3);window.scrollTo(0,0);load();return;
+        }
+        err.textContent=d.error||'Something went wrong. Please try again.';err.hidden=false;
+        if(d.refresh){chosen=null;load().then(function(){show(1);msg(d.error);});}
+      }).catch(function(){btn.disabled=false;btn.textContent='Confirm my time';err.textContent='No connection. Please try again.';err.hidden=false;});
+  });
+  load();
+})();
+</script>
+</body>
+</html>
